@@ -13,65 +13,65 @@ class RecipeBundleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double? defaultSize = SizeConfig.defaultSize;
-    const spacer = Spacer();
-    // Now we dont this Aspect ratio
     return GestureDetector(
       onTap: press,
       child: Container(
         decoration: BoxDecoration(
           color: recipeBundle!.color,
           borderRadius: BorderRadius.circular(defaultSize! * 1.8), //18
+          border: Border.all(
+            color: Colors.blueGrey,
+            width: 3,
+          ),
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(defaultSize * 2), //20
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    spacer,
-                    Text(
-                      recipeBundle!.title ?? "",
-                      style: TextStyle(
-                          fontSize: defaultSize * 2.2, //22
-                          color: Colors.white),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: defaultSize * 0.5), // 5
-                    Text(
-                      recipeBundle!.description ?? "",
-                      style: TextStyle(color: Colors.white54),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    spacer,
-                    buildInfoRow(
-                      defaultSize,
-                      iconSrc: "assets/icons/pot.svg",
-                      text: "${recipeBundle!.recipes} Recipes",
-                    ),
-                    SizedBox(height: defaultSize * 0.5), //5
-                    buildInfoRow(
-                      defaultSize,
-                      iconSrc: "assets/icons/chef.svg",
-                      text: "${recipeBundle!.chefs} Chefs",
-                    ),
-                    spacer,
-                  ],
+              flex: 7,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(14),
+                  topRight: Radius.circular(14),
+                ),
+                child: Image.asset(
+                  recipeBundle!.imageSrc ?? "",
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
                 ),
               ),
             ),
-            SizedBox(width: defaultSize * 0.5), //5
-            AspectRatio(
-              aspectRatio: 0.71,
-              child: Image.asset(
-                recipeBundle!.imageSrc ?? "",
-                fit: BoxFit.cover,
-                alignment: Alignment.centerLeft,
+            Expanded(
+              flex: 3,
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          recipeBundle!.title ?? "",
+                          style: TextStyle(
+                              fontSize: defaultSize * 1.6, //16
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: defaultSize * 0.5), // 5
+                        buildInfoRow(
+                          defaultSize,
+                          iconSrc: "assets/icons/clock.svg",
+                          text: "${recipeBundle!.minutes} min",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -86,7 +86,9 @@ class RecipeBundleCard extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: Colors.white,
+            fontSize: defaultSize * 1.2, //12
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
           ),
         )
       ],
