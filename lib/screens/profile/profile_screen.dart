@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:munchable/components/my_bottom_nav_bar.dart';
+import 'package:munchable/components/bottom_nav.dart';
 import 'package:munchable/constants.dart';
 import 'package:munchable/screens/profile/components/body.dart';
 import 'package:munchable/size_config.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: buildAppBar(),
       body: Body(),
-      bottomNavigationBar: MyBottomNavBar(),
     );
   }
 
@@ -23,13 +24,13 @@ class ProfileScreen extends StatelessWidget {
       centerTitle: true,
       title: Text("Profile"),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           onPressed: () {},
           child: Text(
             "Edit",
             style: TextStyle(
               color: Colors.white,
-              fontSize: SizeConfig.defaultSize * 1.6, //16
+              fontSize: SizeConfig.defaultSize! * 1.6, //16
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -5,21 +5,22 @@ import 'package:munchable/models/RecipeBundle.dart';
 import '../../../size_config.dart';
 
 class RecipeBundleCard extends StatelessWidget {
-  final RecipeBundle recipeBundle;
-  final Function press;
+  final RecipeBundle? recipeBundle;
+  final Function()? press;
 
-  const RecipeBundleCard({Key key, this.recipeBundle, this.press})
+  const RecipeBundleCard({Key? key, this.recipeBundle, this.press})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double defaultSize = SizeConfig.defaultSize;
+    double? defaultSize = SizeConfig.defaultSize;
+    const spacer = Spacer();
     // Now we dont this Aspect ratio
     return GestureDetector(
       onTap: press,
       child: Container(
         decoration: BoxDecoration(
-          color: recipeBundle.color,
-          borderRadius: BorderRadius.circular(defaultSize * 1.8), //18
+          color: recipeBundle!.color,
+          borderRadius: BorderRadius.circular(defaultSize! * 1.8), //18
         ),
         child: Row(
           children: <Widget>[
@@ -29,9 +30,9 @@ class RecipeBundleCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Spacer(),
+                    spacer,
                     Text(
-                      recipeBundle.title,
+                      recipeBundle!.title ?? "",
                       style: TextStyle(
                           fontSize: defaultSize * 2.2, //22
                           color: Colors.white),
@@ -40,24 +41,24 @@ class RecipeBundleCard extends StatelessWidget {
                     ),
                     SizedBox(height: defaultSize * 0.5), // 5
                     Text(
-                      recipeBundle.description,
+                      recipeBundle!.description ?? "",
                       style: TextStyle(color: Colors.white54),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Spacer(),
+                    spacer,
                     buildInfoRow(
                       defaultSize,
                       iconSrc: "assets/icons/pot.svg",
-                      text: "${recipeBundle.recipes} Recipes",
+                      text: "${recipeBundle!.recipes} Recipes",
                     ),
                     SizedBox(height: defaultSize * 0.5), //5
                     buildInfoRow(
                       defaultSize,
                       iconSrc: "assets/icons/chef.svg",
-                      text: "${recipeBundle.chefs} Chefs",
+                      text: "${recipeBundle!.chefs} Chefs",
                     ),
-                    Spacer(),
+                    spacer,
                   ],
                 ),
               ),
@@ -66,7 +67,7 @@ class RecipeBundleCard extends StatelessWidget {
             AspectRatio(
               aspectRatio: 0.71,
               child: Image.asset(
-                recipeBundle.imageSrc,
+                recipeBundle!.imageSrc ?? "",
                 fit: BoxFit.cover,
                 alignment: Alignment.centerLeft,
               ),
@@ -77,10 +78,10 @@ class RecipeBundleCard extends StatelessWidget {
     );
   }
 
-  Row buildInfoRow(double defaultSize, {String iconSrc, text}) {
+  Row buildInfoRow(double defaultSize, {String? iconSrc, text}) {
     return Row(
       children: <Widget>[
-        SvgPicture.asset(iconSrc),
+        SvgPicture.asset(iconSrc!),
         SizedBox(width: defaultSize), // 10
         Text(
           text,

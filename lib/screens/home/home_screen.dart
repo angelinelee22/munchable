@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:munchable/components/my_bottom_nav_bar.dart';
+import 'package:munchable/components/bottom_nav.dart';
 import 'package:munchable/screens/home/components/body.dart';
+import 'package:munchable/services/auth.dart';
 import 'package:munchable/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: buildAppBar(),
       body: Body(),
-      // We are not able to BottomNavigationBar because the icon parameter dont except SVG
-      // We also use Provied to manage the state of our Nav
-      bottomNavigationBar: MyBottomNavBar(),
     );
   }
 
@@ -31,9 +33,15 @@ class HomeScreen extends StatelessWidget {
           icon: SvgPicture.asset("assets/icons/search.svg"),
           onPressed: () {},
         ),
+        TextButton.icon(
+            icon: Icon(Icons.person, color: Colors.lightGreen),
+            label: Text('logout', style: TextStyle(color: Colors.lightGreen)),
+            onPressed: () async {
+              await _auth.signOut();
+            }),
         SizedBox(
           // It means 5 because by out defaultSize = 10
-          width: SizeConfig.defaultSize * 0.5,
+          width: SizeConfig.defaultSize! * 0.5,
         )
       ],
     );

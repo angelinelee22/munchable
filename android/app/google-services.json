@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141117153926",
+    "project_id": "munchable-93bed",
+    "storage_bucket": "munchable-93bed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141117153926:android:505475031fe5b65afca707",
+        "android_client_info": {
+          "package_name": "com.company.munchable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141117153926-e2abnhusqcb6gnn3v0b0sf1bg0j1hql3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG61BqQ9zaCWpyV4huv7H-01WT4jAfWhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141117153926-e2abnhusqcb6gnn3v0b0sf1bg0j1hql3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

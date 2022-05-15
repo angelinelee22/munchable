@@ -15,24 +15,29 @@ class Body extends StatelessWidget {
             name: "John Doe",
             email: "Johndoe01@gmail.com",
           ),
-          SizedBox(height: SizeConfig.defaultSize * 2), //20
+          SizedBox(height: SizeConfig.defaultSize! * 2), //20
           ProfileMenuItem(
-            iconSrc: "assets/icons/bookmark_fill.svg",
+            icon: Icon(Icons.bookmark, color: Colors.grey),
             title: "Saved Recipes",
             press: () {},
           ),
           ProfileMenuItem(
-            iconSrc: "assets/icons/chef_color.svg",
+            icon: Icon(Icons.star, color: Colors.yellow),
             title: "Super Plan",
             press: () {},
           ),
           ProfileMenuItem(
-            iconSrc: "assets/icons/language.svg",
+            icon: Icon(Icons.language, color: Colors.grey),
             title: "Change Language",
             press: () {},
           ),
           ProfileMenuItem(
-            iconSrc: "assets/icons/info.svg",
+            icon: Icon(Icons.info, color: Colors.grey),
+            title: "Help",
+            press: () {},
+          ),
+          ProfileMenuItem(
+            icon: Icon(Icons.person, color: Colors.grey),
             title: "Help",
             press: () {},
           ),
