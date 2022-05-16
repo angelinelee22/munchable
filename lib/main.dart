@@ -2,6 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:munchable/models/firebase_user.dart';
 import 'package:munchable/screens/authentication/authenticate.dart';
+import 'package:munchable/screens/recipes/recipe0.dart';
+import 'package:munchable/screens/recipes/recipe1.dart';
+import 'package:munchable/screens/recipes/recipe2.dart';
+import 'package:munchable/screens/recipes/recipe3.dart';
+import 'package:munchable/screens/recipes/recipe4.dart';
+import 'package:munchable/screens/recipes/recipe5.dart';
+import 'package:munchable/screens/recipes/recipe6.dart';
+import 'package:munchable/screens/recipes/recipe7.dart';
 import 'package:munchable/screens/wrapper.dart';
 import 'package:munchable/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +39,16 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.lightGreen,
         ),
         home: Wrapper(),
+        routes: {
+          '/recipe0': (context) => Recipe0(),
+          '/recipe1': (context) => Recipe1(),
+          '/recipe2': (context) => Recipe2(),
+          '/recipe3': (context) => Recipe3(),
+          '/recipe4': (context) => Recipe4(),
+          '/recipe5': (context) => Recipe5(),
+          '/recipe6': (context) => Recipe6(),
+          '/recipe7': (context) => Recipe7(),
+        },
       ),
     );
   }

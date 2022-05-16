@@ -30,7 +30,9 @@ class Body extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) => RecipeBundleCard(
                   recipeBundle: recipeBundles[index],
-                  press: () {},
+                  press: () {
+                    Navigator.of(context, rootNavigator: true).pushNamed("/recipe$index");
+                  },
                 ),
               ),
             ),
