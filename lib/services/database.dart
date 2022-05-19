@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
+  final source = Source.cache;
   final String? uid;
   DatabaseService({this.uid});
 
@@ -9,17 +10,50 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('users');
 
   Future updateUserData(
-      String firstName, String lastName, bool firstLogin) async {
-    return await userCollection.doc(uid).set({
-      'firstName': firstName,
-      'lastName': lastName,
-      'firstLogin': firstLogin
+      String firstName, String lastName, String email, bool firstLogin) async {
+    final data = {
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "firstLogin": firstLogin,
+    };
+
+    return await userCollection.doc(uid).set(data, SetOptions(merge:true));
+  }
+
+  //  getUserData() async {
+  //    final docRef = userCollection.doc(uid);
+  //     Map? snap;
+  //     await docRef.get(GetOptions(source: source)).then((res) {
+  //       snap = res.data() as Map?;
+  //     });
+  //     firstName = snap?['firstName'];
+  //     lastName = snap?['lastName'];
+  //     email = snap?['email'];
+  //     print(snap?['firstName']);
+  // }
+
+  Future retName() async {
+    // getUserData();
+    // print('$firstName 1');
+    Map? snap;
+    final docRef = userCollection.doc(uid);
+    await docRef.get(GetOptions(source: source)).then((res) {
+      snap = res.data() as Map?;
     });
+    List<String?> na = <String?>[];
+    na.add(snap?['firstName']);
+    na.add(snap?['lastName']);
+    List<String?> data = <String>[];
+    String name = na.join(" ");
+    data.add(name);
+    data.add(snap?['email']);
+    return data;
   }
 
   Future updateUserLogin(bool firstLogin) async {
     return await userCollection.doc(uid).set({
       'firstLogin': firstLogin,
-    });
+    },  SetOptions(merge:true));
   }
 }

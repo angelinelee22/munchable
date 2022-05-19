@@ -6,11 +6,11 @@ import '../../../size_config.dart';
 class Info extends StatelessWidget {
   const Info({
     Key? key,
+    this.initials,
     this.name,
     this.email,
-    this.image,
   }) : super(key: key);
-  final String? name, email, image;
+  final String? name, email, initials;
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +30,17 @@ class Info extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(bottom: defaultSize), //10
-                  height: defaultSize * 14, //140
-                  width: defaultSize * 14,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: defaultSize * 0.8, //8
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(image!),
-                    ),
+                Container (
+                  height: defaultSize * 12, //140
+                    width: defaultSize * 12,
+                  margin: EdgeInsets.only(bottom: defaultSize, top: 0), //10
+                  child: CircleAvatar(
+                    backgroundColor: const Color(0xffdcdede),
+                    child: Text(initials!,
+                        style: TextStyle(
+                          fontSize:  60, // 22
+                          color: kTextColor,
+                        )),
                   ),
                 ),
                 Text(

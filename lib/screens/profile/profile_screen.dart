@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:munchable/components/bottom_nav.dart';
 import 'package:munchable/constants.dart';
 import 'package:munchable/screens/profile/components/body.dart';
 import 'package:munchable/size_config.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  final toggleView;
 
+  const ProfileScreen({Key? key, this.toggleView}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
