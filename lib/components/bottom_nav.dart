@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:munchable/models/NavItem.dart';
 import 'package:munchable/screens/home/home_screen.dart';
 import 'package:munchable/screens/profile/profile_screen.dart';
+import 'package:munchable/screens/pantry/pantry_screen.dart';
 import 'package:provider/provider.dart';
+
+
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -28,7 +31,7 @@ class _BottomNavWidgetState extends State<BottomNav> {
       ),
       home: HomeScreen(),
     ),
-    ProfileScreen(),
+     PantryScreen(), ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -51,9 +54,14 @@ class _BottomNavWidgetState extends State<BottomNav> {
             label: 'Tasks',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.cake),
+            label: 'Pantry',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Account',
           ),
+
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.lightGreen,
