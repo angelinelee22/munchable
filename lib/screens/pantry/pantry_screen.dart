@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:munchable/screens/pantry/components/ingredients_list.dart';
 import 'package:munchable/constants.dart';
 
-int itemCount = 0;
-List<String> ingredients = List.from(Data.ingredientsList);
-List indices = [];
-List newIndices = [];
+var listState = GlobalKey<AnimatedListState>();             // Used to save the state of the animated list
+int itemCount = 0;                                          // Current number of ingredients the user has
+List currentItems = [];                                     // List of strings of current ingredient items
+List newItems = [];                                         // List of strings of new ingredient items to add
 
 // Pantry page needs to be stateful to account for the dynamic list of ingredients
 class PantryScreen extends StatefulWidget {
@@ -18,8 +18,9 @@ class PantryScreen extends StatefulWidget {
 }
 
 class _PantryScreenState extends State<PantryScreen> {
-  final key = GlobalKey<AnimatedListState>();
-  final items = [];
+  // Inherit the global state of the list and the ingredients list
+  final key = listState;
+  final items = currentItems;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -46,14 +47,15 @@ class _PantryScreenState extends State<PantryScreen> {
         // Otherwise, display the list of ingredients
         */
 
+        // Dynamic list of ingredient items
         Expanded(
-          child:
-          AnimatedList(
-            key: key,
-            initialItemCount: itemCount,
-            itemBuilder: (context, index, animation) =>
-                buildItem(items[index], index, animation),
-          )
+            child:
+            AnimatedList(
+              key: key,
+              initialItemCount: itemCount,
+              itemBuilder: (context, index, animation) =>
+                  buildItem(items[index], index, animation),
+            )
         ),
 
         // Button which navigates to page containing list of ingredients
@@ -74,37 +76,43 @@ class _PantryScreenState extends State<PantryScreen> {
         onClicked: ()  => removeItem(index),
       );
 
-  // Constructor for the ingredients navigation button
+  // Constructor for the navigator button
   Widget buildNavButton() => RaisedButton(
-    child: const Text(
-      'Add Item to Pantry',
-      style: TextStyle(fontSize: 20),
-    ),
-    color: kPrimaryColor,
-    textColor: Colors.white,
-    onPressed: ()  {
-      Navigator.push(
-        context,
+      child: const Text(
+        'Add Item to Pantry',
+        style: TextStyle(fontSize: 20),
+      ),
+      color: kPrimaryColor,
+      textColor: Colors.white,
+      onPressed: ()  {
+        Navigator.push(
+          context,
 
-        // Navigate to the ingredients page
-        MaterialPageRoute(builder: (context) => IngredientsPage()
-        ),
-      ).then((_) {
-        // Build the animated list based on what was checked off
-        for (int x in newIndices){
-          if (!indices.contains(x)){
-            insertItem(itemCount, ingredients[x]);
-            indices.add(x);
+          // Navigate to the ingredients page
+          MaterialPageRoute(builder: (context) => IngredientsPage()
+          ),
+          
+          // After we return from the ingredients page,
+        ).then((_) {
+          // Build the animated list based on what was checked off
+          for (String x in newItems){
+            // Avoid adding duplicate items to the list
+            if (!currentItems.contains(x)){
+              // Add the item to the dynamic list, and update the global state 
+              insertItem(itemCount, x);
+              listState = key;
+              currentItems.add(x);
+            }
           }
-        }
-        newIndices.clear();
-      });
-    }
+          // Clear the newItems array for the next time the user wants to add ingredients
+          newItems.clear();
+        });
+      }
   );
 
 
-
   // Adds an item to the ingredients list
+  // (index parameter is the index in the dynamic list where the item should be added)
   void insertItem(int index, String item) {
     items.insert(index, item);
     key.currentState?.insertItem(index);
@@ -112,22 +120,22 @@ class _PantryScreenState extends State<PantryScreen> {
   }
 
   // Removes an item from the ingredients list
+  // (index parameter is the index in the dynamic list where the item should be removed)
   void removeItem(int index) {
-    int ingredIndex = ingredients.indexOf(items[index]);
-    indices.remove(ingredIndex);
     final item = items[index];
+
     itemCount--;
-    items.remove(ingredients[ingredIndex]);
+    items.remove(item);
+    currentItems.remove(item);
 
     key.currentState?.removeItem(
       index,
           (context, animation) => buildItem(item, index, animation),
     );
-
   }
 }
 
-// Create the widget for the individual ingredient item
+// Create the widget for the individual ingredient item in the dynamic list
 class IngredientItemWidget extends StatelessWidget {
   final String item;
   final Animation<double> animation;
@@ -168,16 +176,17 @@ class IngredientsPage extends StatefulWidget {
   _IngredientsPageState createState() => _IngredientsPageState();
 }
 
+// Creates a page with a list of ingredients and checkboxes for selection
 class _IngredientsPageState extends State {
-  List<String> pantryItems = List.from(Data.ingredientsList);
   Map<String, bool> list = {for (var item in List.from(Data.ingredientsList)) item : false};
   bool value = false;
 
+  // When we hit the return button, accumulate all the ingredients whose box was checked
   getItems(){
     list.forEach((key, value) {
       if(value == true)
       {
-        newIndices.add(pantryItems.indexOf(key));
+        newItems.add(key);
       }
     });
 
@@ -186,49 +195,49 @@ class _IngredientsPageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body:
+        backgroundColor: Colors.white,
+        body:
         Stack(
-          children:[
-            Container(
-              padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
-              alignment: Alignment.topCenter,
-              child: RaisedButton(
-                child: const Text(
-                  'Add Items',
-                  style: TextStyle(fontSize: 20),
-                ),
-                color: kPrimaryColor,
-                textColor: Colors.white,
-                onPressed: () {
-                  getItems();
-                  Navigator.pop(context);
-                },
-              )
-            ),
-            Expanded(
-              child:
-                Container (
-                  padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-                  child: ListView(
-                    children: list.keys.map((String key) {
-                      return CheckboxListTile(
-                        title: Text(key),
-                        value: list[key],
-                        activeColor: Colors.lightGreen,
-                        checkColor: Colors.white,
-                        onChanged: (value) {
-                          setState(() {
-                            list[key] = value!;
-                          });
+            children:[
+              Container(
+                  padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
+                  alignment: Alignment.topCenter,
+                  child: RaisedButton(
+                    child: const Text(
+                      'Add Items',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    color: kPrimaryColor,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      getItems();
+                      Navigator.pop(context);
+                    },
+                  )
+              ),
+              Expanded(
+                  child:
+                  Container (
+                    padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+                    child: ListView(
+                      children: list.keys.map((String key) {
+                        return CheckboxListTile(
+                          title: Text(key),
+                          value: list[key],
+                          activeColor: Colors.lightGreen,
+                          checkColor: Colors.white,
+                          onChanged: (value) {
+                            setState(() {
+                              list[key] = value!;
+                            });
                           },
-                      );
-                    }).toList(),
-                ),
+                        );
+                      }).toList(),
+                    ),
+                  )
               )
-          )
-        ]
-      )
+            ]
+        )
     );
   }
 }
