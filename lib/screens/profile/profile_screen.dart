@@ -11,11 +11,13 @@ class ProfileScreen extends StatefulWidget {
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
+
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(),
       body: Body(),
     );
@@ -23,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   AppBar buildAppBar() {
     return AppBar(
+      elevation: 0.0,
       backgroundColor: kPrimaryColor,
       leading: SizedBox(),
       // On Android it's false by default

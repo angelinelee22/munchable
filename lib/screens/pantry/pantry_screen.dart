@@ -44,6 +44,7 @@ class _PantryScreenState extends State<PantryScreen> {
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0.0,
         title: Text(widget.title),
         centerTitle: true,
         backgroundColor: kPrimaryColor,

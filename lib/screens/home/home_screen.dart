@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:munchable/components/bottom_nav.dart';
+import 'package:munchable/constants.dart';
 import 'package:munchable/screens/home/components/body.dart';
 import 'package:munchable/services/auth.dart';
 import 'package:munchable/size_config.dart';
@@ -21,21 +22,22 @@ class HomeScreen extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () {},
-      ),
+      backgroundColor: kPrimaryColor,
       // On Android by default its false
       centerTitle: true,
-      title: Image.asset("assets/images/logo.png"),
+      title: Column(children: [
+        SizedBox(height: 12.0),
+        Text("munchable",
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Friends',
+              fontSize: 30,
+            ))
+      ]),
       actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
-          onPressed: () {},
-        ),
         TextButton.icon(
-            icon: Icon(Icons.person, color: Colors.lightGreen),
-            label: Text('logout', style: TextStyle(color: Colors.lightGreen)),
+            icon: Icon(Icons.person, color: Colors.white),
+            label: Text('logout', style: TextStyle(color: Colors.white)),
             onPressed: () async {
               await _auth.signOut();
             }),

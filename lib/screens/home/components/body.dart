@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:munchable/constants.dart';
 import 'package:munchable/models/RecipeBundle.dart';
 import 'package:munchable/size_config.dart';
 
@@ -15,12 +16,12 @@ class Body extends StatelessWidget {
             height: 40.0,
             padding: const EdgeInsets.all(8.0),
             margin: const EdgeInsets.all(8.0),
-            color: Colors.lightGreen,
+            color: Colors.white,
             child: const Text(
               "Recommended Recipes",
               style: TextStyle(
                 fontSize: 20,
-                color: Colors.white,
+                color: kPrimaryColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -44,7 +45,8 @@ class Body extends StatelessWidget {
                 itemBuilder: (context, index) => RecipeBundleCard(
                   recipeBundle: recipeBundles[index],
                   press: () {
-                    Navigator.of(context, rootNavigator: true).pushNamed("/recipe$index");
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamed("/recipe$index");
                   },
                 ),
               ),
