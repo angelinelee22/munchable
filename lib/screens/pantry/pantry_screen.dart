@@ -91,14 +91,14 @@ class _PantryScreenState extends State<PantryScreen> {
           // Navigate to the ingredients page
           MaterialPageRoute(builder: (context) => IngredientsPage()
           ),
-          
+
           // After we return from the ingredients page,
         ).then((_) {
           // Build the animated list based on what was checked off
           for (String x in newItems){
             // Avoid adding duplicate items to the list
             if (!currentItems.contains(x)){
-              // Add the item to the dynamic list, and update the global state 
+              // Add the item to the dynamic list, and update the global state
               insertItem(itemCount, x);
               listState = key;
               currentItems.add(x);
@@ -178,8 +178,17 @@ class IngredientsPage extends StatefulWidget {
 
 // Creates a page with a list of ingredients and checkboxes for selection
 class _IngredientsPageState extends State {
-  Map<String, bool> list = {for (var item in List.from(Data.ingredientsList)) item : false};
+  TextEditingController editingController = TextEditingController();
+
+  Map<String, bool> permanentList = {for (var item in List.from(Data.ingredientsList)) item : false};
+  Map<String, bool> list = { };
   bool value = false;
+
+  @override
+  void initState(){
+    list.addAll(permanentList);
+    super.initState();
+  }
 
   // When we hit the return button, accumulate all the ingredients whose box was checked
   getItems(){
@@ -192,6 +201,37 @@ class _IngredientsPageState extends State {
 
   }
 
+  void filterSearchResults(String query) {
+    List<String> dummyIngredients = permanentList.keys.toList();
+
+
+    // Check if the search query is in the list
+    if(query.isNotEmpty) {
+      query = query.toLowerCase();
+      Map<String, bool> filteredListData = <String, bool>{};
+
+      for (int i=0; i<dummyIngredients.length; i++){
+        if (dummyIngredients[i].toLowerCase().contains(query)){
+          filteredListData[dummyIngredients[i]] = list[dummyIngredients[i]] ?? false;
+        }
+      }
+
+      // Filter the list based on the search results
+      setState(() {
+        list.clear();
+        list.addAll(filteredListData);
+      });
+      return;
+      // Return the list to its' default state
+    } else {
+      setState(() {
+        list.clear();
+        list.addAll(permanentList);
+      });
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,6 +239,7 @@ class _IngredientsPageState extends State {
         body:
         Stack(
             children:[
+              // Button to return to the previous page and add the checked items to the pantry
               Container(
                   padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
                   alignment: Alignment.topCenter,
@@ -215,12 +256,30 @@ class _IngredientsPageState extends State {
                     },
                   )
               ),
+              // Search bar to filter the list of ingredients
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 100, 8, 8),
+                child: TextField(
+                  onChanged: (value) {
+                    filterSearchResults(value);
+                  },
+                  controller: editingController,
+                  decoration: const InputDecoration(
+                      labelText: "Search",
+                      hintText: "Search Ingredients",
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                ),
+              ),
+              // List of ingredients
               Expanded(
                   child:
                   Container (
-                    padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 165, 0, 0),
                     child: ListView(
-                      children: list.keys.map((String key) {
+                      padding: const EdgeInsets.all(0),
+                      children: list.keys.map((String key){
                         return CheckboxListTile(
                           title: Text(key),
                           value: list[key],
@@ -229,6 +288,7 @@ class _IngredientsPageState extends State {
                           onChanged: (value) {
                             setState(() {
                               list[key] = value!;
+                              permanentList[key] = value!;
                             });
                           },
                         );
