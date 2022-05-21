@@ -50,8 +50,8 @@ class _BottomNavWidgetState extends State<BottomNav> {
         backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Tasks',
+            icon: Icon(Icons.restaurant_menu),
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.cake),
