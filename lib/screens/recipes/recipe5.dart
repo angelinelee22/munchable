@@ -21,14 +21,14 @@ class _RecipeState5 extends State<Recipe5> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pork Chops in Mushroom and Garlic Gravy'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding:
-            EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
+                EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
             child: SizedBox(
               height: SizeConfig.defaultSize! * 3.5, // 35
               child: ListView.builder(
@@ -67,7 +67,7 @@ class _RecipeState5 extends State<Recipe5> {
         ),
         decoration: BoxDecoration(
             color:
-            selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
+                selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
             borderRadius: BorderRadius.circular(
               SizeConfig.defaultSize! * 1.6, // 16
             )),
@@ -104,40 +104,51 @@ class _RecipeState5 extends State<Recipe5> {
       return Column(
         children: <Widget>[
           buildDirections(
-              '1',
-              'Season the pork chops with salt and pepper to taste.'),
+              '1', 'Season the pork chops with salt and pepper to taste.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('2', 'Add about 2 tbsp. of butter to a preheated '
-              'pan followed by some oil.'),
+          buildDirections(
+              '2',
+              'Add about 2 tbsp. of butter to a preheated '
+                  'pan followed by some oil.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('3', 'Put the pork chops in and sear them, over '
-              'medium high heat, until cooked through. This should take about '
-              '3 minutes on each side. Set them aside on a plate.'),
+          buildDirections(
+              '3',
+              'Put the pork chops in and sear them, over '
+                  'medium high heat, until cooked through. This should take about '
+                  '3 minutes on each side. Set them aside on a plate.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('4', 'In the same pan, add in a little more oil if '
-              'necessary. Add the mushrooms in and fry until golden brown and '
-              'the water has released.'),
+          buildDirections(
+              '4',
+              'In the same pan, add in a little more oil if '
+                  'necessary. Add the mushrooms in and fry until golden brown and '
+                  'the water has released.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('5', 'Place the onion and garlic in the pan and '
-              'saute until they are fragrant.'),
+          buildDirections(
+              '5',
+              'Place the onion and garlic in the pan and '
+                  'saute until they are fragrant.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('6', 'Add in the flour and stir until it coats the '
-              'ingredients.'),
+          buildDirections(
+              '6',
+              'Add in the flour and stir until it coats the '
+                  'ingredients.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('7', 'Pour the beef broth in, stir, and bring to a '
-              'boil, until it thickens.'),
+          buildDirections(
+              '7',
+              'Pour the beef broth in, stir, and bring to a '
+                  'boil, until it thickens.'),
           const SizedBox(
             height: 20,
           ),
@@ -145,8 +156,10 @@ class _RecipeState5 extends State<Recipe5> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('9', 'Put the pork chops back in and simmer for '
-              'about 3 minutes or so.'),
+          buildDirections(
+              '9',
+              'Put the pork chops back in and simmer for '
+                  'about 3 minutes or so.'),
           const SizedBox(
             height: 20,
           ),

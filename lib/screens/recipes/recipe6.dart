@@ -21,14 +21,14 @@ class _RecipeState6 extends State<Recipe6> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Spaghetti and Meatballs'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding:
-            EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
+                EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
             child: SizedBox(
               height: SizeConfig.defaultSize! * 3.5, // 35
               child: ListView.builder(
@@ -67,7 +67,7 @@ class _RecipeState6 extends State<Recipe6> {
         ),
         decoration: BoxDecoration(
             color:
-            selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
+                selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
             borderRadius: BorderRadius.circular(
               SizeConfig.defaultSize! * 1.6, // 16
             )),
@@ -114,29 +114,37 @@ class _RecipeState6 extends State<Recipe6> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('2', 'In a large bowl, combine beef with bread '
-              'crumbs, parsley, Parmesan, egg, garlic, 1 teaspoon salt, and '
-              'red pepper flakes. Mix until just combined then form into 16 '
-              'balls.'),
+          buildDirections(
+              '2',
+              'In a large bowl, combine beef with bread '
+                  'crumbs, parsley, Parmesan, egg, garlic, 1 teaspoon salt, and '
+                  'red pepper flakes. Mix until just combined then form into 16 '
+                  'balls.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('3', 'In a large pot over medium high heat, heat '
-              'oil. Add meatballs and cook, turning occasionally, until '
-              'browned on all sides, about 10 minutes. Transfer meatballs to '
-              'a plate.'),
+          buildDirections(
+              '3',
+              'In a large pot over medium high heat, heat '
+                  'oil. Add meatballs and cook, turning occasionally, until '
+                  'browned on all sides, about 10 minutes. Transfer meatballs to '
+                  'a plate.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('4', 'Add onion to pot and cook until soft, 5 '
-              'minutes. Add crushed tomatoes and bay leaf. Season with salt '
-              'and pepper, and bring to a simmer. Return meatballs to pot and '
-              'cover. Simmer until sauce has thickened, 8 to 10 minutes.'),
+          buildDirections(
+              '4',
+              'Add onion to pot and cook until soft, 5 '
+                  'minutes. Add crushed tomatoes and bay leaf. Season with salt '
+                  'and pepper, and bring to a simmer. Return meatballs to pot and '
+                  'cover. Simmer until sauce has thickened, 8 to 10 minutes.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('5', 'Serve pasta with a healthy scoop of meatballs, '
-              'and sauce. Top with parmesan.'),
+          buildDirections(
+              '5',
+              'Serve pasta with a healthy scoop of meatballs, '
+                  'and sauce. Top with parmesan.'),
         ],
       );
     }

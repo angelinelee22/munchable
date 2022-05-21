@@ -28,7 +28,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.lightGreen,
+            backgroundColor: kPrimaryColor,
             body: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 child: Form(
@@ -158,7 +158,7 @@ class _RegisterState extends State<Register> {
                                       vertical: 15.0, horizontal: 10.0),
                                 ),
                                 child: Text('Register',
-                                    style: TextStyle(color: Colors.lightGreen)),
+                                    style: TextStyle(color: kPrimaryColor)),
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     setState(() {

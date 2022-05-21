@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.lightGreen,
+            backgroundColor: kPrimaryColor,
             body: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 child: Form(
@@ -114,7 +114,7 @@ class _SignInState extends State<SignIn> {
                                       vertical: 15.0, horizontal: 10.0),
                                 ),
                                 child: Text('Sign in',
-                                    style: TextStyle(color: Colors.lightGreen)),
+                                    style: TextStyle(color: kPrimaryColor)),
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     setState(() {

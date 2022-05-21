@@ -21,7 +21,7 @@ class _RecipeState0 extends State<Recipe0> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cheesy Beef Quesadillas'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,23 +117,29 @@ class _RecipeState0 extends State<Recipe0> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('2', 'Add taco seasoning, tomato paste, 1 tbsp water '
-              'and black beans; cook on medium-low for 5 minutes. Turn off'
-              'heat and mix in avocado and cilantro.'),
+          buildDirections(
+              '2',
+              'Add taco seasoning, tomato paste, 1 tbsp water '
+                  'and black beans; cook on medium-low for 5 minutes. Turn off'
+                  'heat and mix in avocado and cilantro.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('3', 'Warm a large non-stick pan over medium heat '
-              'with 1 teaspoon oil. Place a flour tortilla in the pan and '
-              'sprinkle half with cheese, beef mixture and more cheese. Fold '
-              'tortilla over and fry lightly on both sides until cheese is '
-              'melted. Repeat with remaining tortillas. To save time, use'
-              'two non-stick pans.'),
+          buildDirections(
+              '3',
+              'Warm a large non-stick pan over medium heat '
+                  'with 1 teaspoon oil. Place a flour tortilla in the pan and '
+                  'sprinkle half with cheese, beef mixture and more cheese. Fold '
+                  'tortilla over and fry lightly on both sides until cheese is '
+                  'melted. Repeat with remaining tortillas. To save time, use'
+                  'two non-stick pans.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('4', 'Cut quesadillas into wedges and serve with '
-              'lime wedges and sour cream.'),
+          buildDirections(
+              '4',
+              'Cut quesadillas into wedges and serve with '
+                  'lime wedges and sour cream.'),
         ],
       );
     }

@@ -3,7 +3,6 @@ import 'package:munchable/constants.dart';
 import 'package:munchable/models/RecipeBundle.dart';
 import 'package:munchable/size_config.dart';
 
-import 'categories.dart';
 import 'recipe_bundle_card.dart';
 
 class Body extends StatelessWidget {

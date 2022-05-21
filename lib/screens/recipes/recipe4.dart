@@ -21,14 +21,14 @@ class _RecipeState4 extends State<Recipe4> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Jalapeno Popper Chicken'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding:
-            EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
+                EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
             child: SizedBox(
               height: SizeConfig.defaultSize! * 3.5, // 35
               child: ListView.builder(
@@ -67,7 +67,7 @@ class _RecipeState4 extends State<Recipe4> {
         ),
         decoration: BoxDecoration(
             color:
-            selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
+                selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
             borderRadius: BorderRadius.circular(
               SizeConfig.defaultSize! * 1.6, // 16
             )),
@@ -109,39 +109,53 @@ class _RecipeState4 extends State<Recipe4> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('2', 'Place the cream cheese, cheddar cheese, '
-              'jalapenos and garlic powder in a bowl; stir to combine.'),
+          buildDirections(
+              '2',
+              'Place the cream cheese, cheddar cheese, '
+                  'jalapenos and garlic powder in a bowl; stir to combine.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('3', 'Cut a deep pocket into each chicken breast, '
-              'taking care not to cut all the way through to the other side.'),
+          buildDirections(
+              '3',
+              'Cut a deep pocket into each chicken breast, '
+                  'taking care not to cut all the way through to the other side.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('4', 'Fill the pocket of each chicken breast with '
-              'the cream cheese mixture.'),
+          buildDirections(
+              '4',
+              'Fill the pocket of each chicken breast with '
+                  'the cream cheese mixture.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('5', 'Season the outside of the chicken breasts '
-              'with salt and pepper to taste.'),
+          buildDirections(
+              '5',
+              'Season the outside of the chicken breasts '
+                  'with salt and pepper to taste.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('6', 'Wrap each chicken breast tightly with two '
-              'slices of bacon and place the chicken on the sheet pan.'),
+          buildDirections(
+              '6',
+              'Wrap each chicken breast tightly with two '
+                  'slices of bacon and place the chicken on the sheet pan.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('7', 'Cook for 30 minutes, or until chicken is '
-              'cooked through and bacon is crisp. You can broil the chicken '
-              'for 3 - 4 minutes to crisp up the bacon if needed.'),
+          buildDirections(
+              '7',
+              'Cook for 30 minutes, or until chicken is '
+                  'cooked through and bacon is crisp. You can broil the chicken '
+                  'for 3 - 4 minutes to crisp up the bacon if needed.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('8', 'Let the chicken rest for 5 minutes, then '
-              'slice and serve.'),
+          buildDirections(
+              '8',
+              'Let the chicken rest for 5 minutes, then '
+                  'slice and serve.'),
         ],
       );
     }

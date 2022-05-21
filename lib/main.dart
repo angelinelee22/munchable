@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:munchable/constants.dart';
 import 'package:munchable/models/firebase_user.dart';
 import 'package:munchable/screens/authentication/authenticate.dart';
 import 'package:munchable/screens/recipes/recipe0.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Munchable',
         theme: ThemeData(
-          primaryColor: Colors.lightGreen,
+          primaryColor: kPrimaryColor,
         ),
         home: Wrapper(),
         routes: {

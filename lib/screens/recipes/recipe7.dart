@@ -21,14 +21,14 @@ class _RecipeState7 extends State<Recipe7> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Stuffed Mushrooms'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding:
-            EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
+                EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
             child: SizedBox(
               height: SizeConfig.defaultSize! * 3.5, // 35
               child: ListView.builder(
@@ -67,7 +67,7 @@ class _RecipeState7 extends State<Recipe7> {
         ),
         decoration: BoxDecoration(
             color:
-            selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
+                selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
             borderRadius: BorderRadius.circular(
               SizeConfig.defaultSize! * 1.6, // 16
             )),
@@ -112,24 +112,30 @@ class _RecipeState7 extends State<Recipe7> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('2', 'In a medium skillet over medium heat, melt '
-              'butter. Add chopped mushroom stems and cook until most of the '
-              'moisture is out, 5 minutes. Add garlic and cook until fragrant, '
-              '1 minute. Add breadcrumbs and let toast slightly, 3 minutes. '
-              'Season with salt nad pepper. Remove from heat and let cool '
-              'slightly.'),
+          buildDirections(
+              '2',
+              'In a medium skillet over medium heat, melt '
+                  'butter. Add chopped mushroom stems and cook until most of the '
+                  'moisture is out, 5 minutes. Add garlic and cook until fragrant, '
+                  '1 minute. Add breadcrumbs and let toast slightly, 3 minutes. '
+                  'Season with salt nad pepper. Remove from heat and let cool '
+                  'slightly.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('3', 'In a large bowl mix together mushroom stem '
-              'mixture, Parmesan, cream cheese, parsley, and thyme. Season '
-              'with salt and pepper. Fill mushroom caps with filling and '
-              'sprinkle with more Parmesan.'),
+          buildDirections(
+              '3',
+              'In a large bowl mix together mushroom stem '
+                  'mixture, Parmesan, cream cheese, parsley, and thyme. Season '
+                  'with salt and pepper. Fill mushroom caps with filling and '
+                  'sprinkle with more Parmesan.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('4', 'Bake until mushrooms are soft and the tops '
-              'are golden, 20 minutes.'),
+          buildDirections(
+              '4',
+              'Bake until mushrooms are soft and the tops '
+                  'are golden, 20 minutes.'),
         ],
       );
     }

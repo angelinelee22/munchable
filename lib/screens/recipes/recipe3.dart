@@ -21,14 +21,14 @@ class _RecipeState3 extends State<Recipe3> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Honey Mustard Chicken'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding:
-            EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
+                EdgeInsets.symmetric(vertical: SizeConfig.defaultSize! * 2),
             child: SizedBox(
               height: SizeConfig.defaultSize! * 3.5, // 35
               child: ListView.builder(
@@ -67,7 +67,7 @@ class _RecipeState3 extends State<Recipe3> {
         ),
         decoration: BoxDecoration(
             color:
-            selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
+                selectedIndex == index ? Color(0xFFEFF3EE) : Colors.transparent,
             borderRadius: BorderRadius.circular(
               SizeConfig.defaultSize! * 1.6, // 16
             )),
@@ -99,8 +99,7 @@ class _RecipeState3 extends State<Recipe3> {
       return Column(
         children: <Widget>[
           buildDirections(
-              '1',
-              'Preheat oven to 350 degrees F (175 degrees C).'),
+              '1', 'Preheat oven to 350 degrees F (175 degrees C).'),
           const SizedBox(
             height: 20,
           ),
@@ -108,13 +107,17 @@ class _RecipeState3 extends State<Recipe3> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('3', 'In a small bowl, combine the honey and '
-              'yellow mustard.'),
+          buildDirections(
+              '3',
+              'In a small bowl, combine the honey and '
+                  'yellow mustard.'),
           const SizedBox(
             height: 20,
           ),
-          buildDirections('4', 'Add the chicken thighs to a large skillet or '
-              'baking dish and cover with honey mustard sauce.'),
+          buildDirections(
+              '4',
+              'Add the chicken thighs to a large skillet or '
+                  'baking dish and cover with honey mustard sauce.'),
           const SizedBox(
             height: 20,
           ),
@@ -122,8 +125,10 @@ class _RecipeState3 extends State<Recipe3> {
           const SizedBox(
             height: 20,
           ),
-          buildDirections('6', 'Spoon sauce over the chicken thighs to '
-              're-coat them.'),
+          buildDirections(
+              '6',
+              'Spoon sauce over the chicken thighs to '
+                  're-coat them.'),
           const SizedBox(
             height: 20,
           ),

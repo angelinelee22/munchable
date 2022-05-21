@@ -21,7 +21,7 @@ class _RecipeState1 extends State<Recipe1> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cilantro Lime Chicken'),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: kPrimaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,8 +112,7 @@ class _RecipeState1 extends State<Recipe1> {
             height: 20,
           ),
           buildDirections(
-              '2',
-              'When ready to cook, preheat oven to 425 degrees Celsius.'),
+              '2', 'When ready to cook, preheat oven to 425 degrees Celsius.'),
           const SizedBox(
             height: 20,
           ),

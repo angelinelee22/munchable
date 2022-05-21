@@ -318,7 +318,7 @@ class _IngredientsPageState extends State {
                 return CheckboxListTile(
                   title: Text(key),
                   value: list[key],
-                  activeColor: Colors.lightGreen,
+                  activeColor: kPrimaryColor,
                   checkColor: Colors.white,
                   onChanged: (value) {
                     setState(() {
