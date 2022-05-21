@@ -9,29 +9,18 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
-  Future updateUserData(
-      String firstName, String lastName, String email, bool firstLogin) async {
+  Future updateUserData(String firstName, String lastName, String email,
+      bool firstLogin, List<String> pantry) async {
     final data = {
       "firstName": firstName,
       "lastName": lastName,
       "email": email,
       "firstLogin": firstLogin,
+      "pantry": pantry
     };
 
-    return await userCollection.doc(uid).set(data, SetOptions(merge:true));
+    return await userCollection.doc(uid).set(data, SetOptions(merge: true));
   }
-
-  //  getUserData() async {
-  //    final docRef = userCollection.doc(uid);
-  //     Map? snap;
-  //     await docRef.get(GetOptions(source: source)).then((res) {
-  //       snap = res.data() as Map?;
-  //     });
-  //     firstName = snap?['firstName'];
-  //     lastName = snap?['lastName'];
-  //     email = snap?['email'];
-  //     print(snap?['firstName']);
-  // }
 
   Future retName() async {
     // getUserData();
@@ -54,6 +43,12 @@ class DatabaseService {
   Future updateUserLogin(bool firstLogin) async {
     return await userCollection.doc(uid).set({
       'firstLogin': firstLogin,
-    },  SetOptions(merge:true));
+    }, SetOptions(merge: true));
+  }
+
+  Future updateUserPantry(List<dynamic> pantry) async {
+    return await userCollection.doc(uid).set({
+      'pantry': pantry,
+    }, SetOptions(merge: true));
   }
 }

@@ -26,7 +26,6 @@ class AuthService {
       User? user = result.user;
       return _firebaseUserFromUser(user!);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
@@ -41,7 +40,6 @@ class AuthService {
       await DatabaseService(uid: user?.uid).updateUserLogin(false);
       return _firebaseUserFromUser(user);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
@@ -55,11 +53,10 @@ class AuthService {
       User? user = result.user;
 
       await DatabaseService(uid: user!.uid)
-          .updateUserData(firstName, lastName, email, true);
+          .updateUserData(firstName, lastName, email, true, []);
 
       return _firebaseUserFromUser(user);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
@@ -69,7 +66,6 @@ class AuthService {
     try {
       return await _auth.signOut();
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
