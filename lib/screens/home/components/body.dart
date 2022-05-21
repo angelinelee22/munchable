@@ -11,7 +11,20 @@ class Body extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          Categories(),
+          Container(
+            height: 40.0,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+            color: Colors.lightGreen,
+            child: const Text(
+              "Recommended Recipes",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           Expanded(
             child: Padding(
               padding:
