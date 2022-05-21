@@ -21,6 +21,18 @@ class _PantryScreenState extends State<PantryScreen> {
   // Inherit the global state of the list and the ingredients list
   final key = listState;
   final items = currentItems;
+  String textHolder = '';
+
+  @override
+  void initState(){
+    if (itemCount == 0){
+      textHolder = "Your pantry is empty,\n add ingredients to personalize your recipes!";
+    } else {
+      textHolder = '';
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -32,20 +44,15 @@ class _PantryScreenState extends State<PantryScreen> {
     ),
     body: Stack(
       children: [
-
-        /* TODO: Figure out some way to swap between this default text and the list depending on the itemCount
         // If there are no items in the list, display the default text
-        itemCount == 0 ?
         Container(
             alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 150),
-            child: const Text("Your pantry is empty,\n add ingredients to personalize your recipes!",
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 75),
+            child: Text(textHolder,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey)
+                style: const TextStyle(color: Colors.grey)
             )
-        ) :
-        // Otherwise, display the list of ingredients
-        */
+        ),
 
         // Dynamic list of ingredient items
         Expanded(
@@ -53,6 +60,7 @@ class _PantryScreenState extends State<PantryScreen> {
             AnimatedList(
               key: key,
               initialItemCount: itemCount,
+              clipBehavior: Clip.antiAlias,
               itemBuilder: (context, index, animation) =>
                   buildItem(items[index], index, animation),
             )
@@ -106,10 +114,22 @@ class _PantryScreenState extends State<PantryScreen> {
           }
           // Clear the newItems array for the next time the user wants to add ingredients
           newItems.clear();
+          changeText();
         });
       }
   );
 
+  changeText() {
+    if (itemCount == 0){
+      setState(() {
+        textHolder = "Your pantry is empty,\n add ingredients to personalize your recipes!";
+      });
+    } else {
+      setState(() {
+        textHolder = '';
+      });
+    }
+  }
 
   // Adds an item to the ingredients list
   // (index parameter is the index in the dynamic list where the item should be added)
@@ -132,6 +152,8 @@ class _PantryScreenState extends State<PantryScreen> {
       index,
           (context, animation) => buildItem(item, index, animation),
     );
+
+    changeText();
   }
 }
 
@@ -152,15 +174,16 @@ class IngredientItemWidget extends StatelessWidget {
   Widget build(BuildContext context) => ScaleTransition(
     scale: animation,
     child: Container(
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
       ),
       child: ListTile(
-        title: Text(item, style: const TextStyle(fontSize: 20)),
+        title: Text(item, style: const TextStyle(fontSize: 18)),
+        dense: true,
         trailing: IconButton(
-          icon: const Icon(Icons.delete, color: Colors.grey, size: 15),
+          icon: const Icon(Icons.delete, color: Colors.grey, size: 20),
           onPressed: onClicked,
         ),
       ),
